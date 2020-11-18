@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta charset="utf-8" />
+	<title>List Books</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	</head>
+	
+	
+</head>
+
+<body class="bg-light">
+
+	<div th:insert="common/navigation"></div>
+	
+	<section class="container">
+	
+		<h1 class="text-center jumbotron p-4">Liste des ouvrages :</h1>
+		<div class="jumbotron bg-white mt-5 border h-auto min-vh-100">
+		
+		<h3 class="ml-3 mb-4">Nombre d'ouvrages: [[${nbBooks}]]</h3> 
+		<div class="card-deck">
+			<th:block th:each="book : ${books}">
+				<div class="col-12 mb-5">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">[[${book.name}]]</h4>
+						</div>
+						<div class="card-body">
+							<p class="card-text">[[${book.summary}]]</p>
+							<div class="card-text">
+								<span th:if="${book.endOfLoaningDate ne null}" class="text-danger"> 
+									Date de disponibilité: [[${#temporals.format(book.endOfLoaningDate, 'dd-MM-yyyy HH:mm')}]]
+								</span>
+								
+								<div th:unless="${book.endOfLoaningDate ne null}" >
+									<span class="text-success">
+										Ce livre est disponible à l'emprunt.
+									</span>
+									<a th:href="@{/book/createLoan(bookId=${book.id})}">
+										<button class="btn btn-success btn-sm ml-3">Emprunter</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</th:block>
+			</div>
+		</div>
+	</section>
+		
+	<div th:insert="common/footer"></div>
+
+</body>

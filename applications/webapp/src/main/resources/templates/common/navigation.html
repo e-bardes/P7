@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title>Bibliothèque</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	</head>
+	
+<body>
+	<div>
+		<!-- navbar-expand pour afficher le menu en ligne -->
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Bibliothèque</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+			>
+				<!-- îcone cliquable qui contient tous les liens-->
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- pour cacher les différents liens quand on bascule sur un affichage en ligne -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav container d-flex">
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">Accueil</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/book/list}">Consulter les ouvrages</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/loan/list}">Consulter mes prêts en cours</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</body>
+
+</html>
