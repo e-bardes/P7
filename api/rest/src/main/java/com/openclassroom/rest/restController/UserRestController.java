@@ -37,10 +37,6 @@ public class UserRestController {
 		
 		UserEntity user = userService.getUser(username);
 		
-		if (user == null) {
-			throw new RuntimeException("User id not found - " + username);
-		}
-		
 		return user;
 	}
 }

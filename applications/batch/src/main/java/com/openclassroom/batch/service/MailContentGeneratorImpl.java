@@ -15,7 +15,7 @@ import freemarker.template.TemplateNotFoundException;
 // la classe qui génère le template de l'email (qui sera représenté par le fichier email.ftl)
 public class MailContentGeneratorImpl implements MailContentGenerator {
 
-	private final Template template;
+	private Template template;
 
 	public MailContentGeneratorImpl(final Configuration conf)
 			throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException {

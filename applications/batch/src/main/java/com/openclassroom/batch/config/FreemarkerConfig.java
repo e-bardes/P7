@@ -5,11 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import no.api.freemarker.java8.Java8ObjectWrapper;
- 
-// cette classe me sert à formater les dates présentes dans le fichier email.ftl
+
 @Configuration
 public class FreemarkerConfig implements BeanPostProcessor {
  
+	// cette méthode sert à formater les dates présentes dans le fichier email.ftl
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName)
             throws BeansException {
