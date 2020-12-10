@@ -30,7 +30,7 @@ public class LoanListController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
 		
-		model.addAttribute("books", bookService.getUserLoans(username));
+		model.addAttribute("loans", bookService.getUserLoans(username));
 
 		return "user-loans";
 		
@@ -38,9 +38,9 @@ public class LoanListController {
 
 	// prolonger un emprunt
 	@GetMapping("/extend")
-	public String extendLoan(@RequestParam("bookId") int bookId, Model model) {
+	public String extendLoan(@RequestParam("loanId") int loanId, Model model) {
 		
-		bookService.extendLoan(bookId);
+		bookService.extendLoan(loanId);
 		
 		return getUserLoans(model);
 	}

@@ -9,9 +9,9 @@ public class User {
 
 	private String username;
     private String password;
-    private String email;
+    private String email;  
     
-    public List<Book> bookList = new ArrayList<Book>();   
+    private List<Loan> loanList = new ArrayList<Loan>();   
     
     public User() {
     	
@@ -54,12 +54,12 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public List<Book> getBookList() {
-		return bookList;
+	
+	public List<Loan> getLoanList() {
+		return loanList;
 	}
 
-	public void setBookList(List<Book> bookList) {
-		this.bookList = bookList;
+	public void setLoanList(List<Loan> loanList) {
+		this.loanList = loanList;
 	}
 }

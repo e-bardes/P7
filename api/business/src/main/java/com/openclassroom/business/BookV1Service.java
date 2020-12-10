@@ -3,6 +3,7 @@ package com.openclassroom.business;
 import java.util.List;
 
 import com.openclassroom.dao.entity.BookEntity;
+import com.openclassroom.dao.entity.LoanEntity;
 
 public interface BookV1Service {
 
@@ -11,6 +12,12 @@ public interface BookV1Service {
 	BookEntity getBook(int id);
 	
 	void addOrEditBook(BookEntity book);
+	
+	List<LoanEntity> getUserLoans(String username);
 
-	Long countBooks();
+	LoanEntity getLoan(int loanId);
+
+	void addOrEditLoan(LoanEntity loan);
+
+	List<BookEntity> searchBooks(String result);
 }

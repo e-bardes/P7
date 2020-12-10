@@ -1,7 +1,5 @@
 package com.openclassroom.dao.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,21 +16,22 @@ public class BookEntity {
 	private int id;
 	
 	private String name;
-	private LocalDateTime endOfLoaningDate;
-	private boolean loanExtended;
+	private String author;
+	private int nbCopiesAvailable;
 	
-	@Column(length = 1000)
+	@Column(length = 3000)
 	private String summary;
 	
 	public BookEntity() {
 		
 	}
 
-	public BookEntity(String name, String summary, LocalDateTime endOfLoaningDate, boolean loanExtended) {
-		this.endOfLoaningDate = endOfLoaningDate;
-		this.loanExtended = loanExtended;
+	public BookEntity(String name, String author, String summary, 
+			int nbCopiesAvailable) {
 		this.name = name;
 		this.summary = summary;
+		this.nbCopiesAvailable = nbCopiesAvailable;
+		this.author = author;
 	}
 
 	public int getId() {
@@ -51,20 +50,20 @@ public class BookEntity {
 		this.name = name;
 	}
 	
-	public LocalDateTime getEndOfLoaningDate() {
-		return endOfLoaningDate;
+	public String getAuthor() {
+		return author;
 	}
 
-	public void setEndOfLoaningDate(LocalDateTime endOfLoaningDate) {
-		this.endOfLoaningDate = endOfLoaningDate;
-	}
-	
-	public boolean isLoanExtended() {
-		return loanExtended;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
-	public void setLoanExtended(boolean loanExtended) {
-		this.loanExtended = loanExtended;
+	public int getNbCopiesAvailable() {
+		return nbCopiesAvailable;
+	}
+
+	public void setNbCopiesAvailable(int nbCopiesAvailable) {
+		this.nbCopiesAvailable = nbCopiesAvailable;
 	}
 
 	public String getSummary() {

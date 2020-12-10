@@ -1,22 +1,22 @@
 package com.openclassroom.model;
 
-import java.time.LocalDateTime;
-
 public class Book {
 
 	private int id;
 	private String name;
-	private LocalDateTime endOfLoaningDate;
-	private boolean loanExtended;
+	private String author;
+	private int nbCopiesAvailable;
 	private String summary;
 	
 	public Book() {
 		
 	}
 
-	public Book(String name, String summary) {
+	public Book(String name, String author, String summary, int nbCopiesAvailable) {
 		this.name = name;
 		this.summary = summary;
+		this.nbCopiesAvailable = nbCopiesAvailable;
+		this.author = author;
 	}
 
 	public int getId() {
@@ -34,21 +34,21 @@ public class Book {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public LocalDateTime getEndOfLoaningDate() {
-		return endOfLoaningDate;
+	
+	public String getAuthor() {
+		return author;
 	}
 
-	public void setEndOfLoaningDate(LocalDateTime endOfLoaningDate) {
-		this.endOfLoaningDate = endOfLoaningDate;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
-	public boolean isLoanExtended() {
-		return loanExtended;
+	public int getNbCopiesAvailable() {
+		return nbCopiesAvailable;
 	}
 
-	public void setLoanExtended(boolean loanExtended) {
-		this.loanExtended = loanExtended;
+	public void setNbCopiesAvailable(int nbCopiesAvailable) {
+		this.nbCopiesAvailable = nbCopiesAvailable;
 	}
 
 	public String getSummary() {

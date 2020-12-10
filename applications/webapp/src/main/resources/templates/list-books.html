@@ -23,33 +23,45 @@
 		<h1 class="text-center jumbotron p-4">Liste des ouvrages :</h1>
 		<div class="jumbotron bg-white mt-5 border h-auto min-vh-100">
 		
-		<h3 class="ml-3 mb-4">Nombre d'ouvrages: [[${nbBooks}]]</h3> 
+		<form class="form-inline" method="post" th:action="@{/book/search}">
+          <input class="form-control ml-3 mb-5" type="rechercher" placeholder="Rechercher" aria-label="Rechercher"
+          name="result" id="result">
+          <button class="btn btn-outline-info mb-5 ml-3" type="submit">Rechercher</button>
+          <h3 class="ml-5 mb-5">Nombre d'ouvrages: [[${nbBooks}]]</h3>
+        </form>
 		<div class="card-deck">
 			<th:block th:each="book : ${books}">
 				<div class="col-12 mb-5">
-					<div class="card">
-						<div class="card-header">
-							<h4 class="card-title">[[${book.name}]]</h4>
-						</div>
-						<div class="card-body">
-							<p class="card-text">[[${book.summary}]]</p>
-							<div class="card-text">
-								<span th:if="${book.endOfLoaningDate ne null}" class="text-danger"> 
-									Date de disponibilité: [[${#temporals.format(book.endOfLoaningDate, 'dd-MM-yyyy HH:mm')}]]
-								</span>
-								
-								<div th:unless="${book.endOfLoaningDate ne null}" >
-									<span class="text-success">
-										Ce livre est disponible à l'emprunt.
-									</span>
-									<a th:href="@{/book/createLoan(bookId=${book.id})}">
-										<button class="btn btn-success btn-sm ml-3">Emprunter</button>
-									</a>
+					<div class="accordion" id="accordion">
+						<div class="card">
+							<div class="card-header btn" th:id="'header' + ${book.id}" type="button" data-toggle="collapse" 
+								th:data-target="'#collapse' + ${book.id}" aria-expanded="true" th:aria-controls="'collapse' + ${book.id}">
+								<h4 class="card-title">[[${book.name}]]</h4>
+								<h5 class="card-title">[[${book.author}]]</h5>
+							</div>
+							<div class="collapse" th:id="'collapse' + ${book.id}" th:aria-labelledby="'header' + ${book.id}" data-parent="#accordion">
+								<div class="card-body">
+									<p class="card-text">[[${book.summary}]]</p>
+									<div class="card-text">
+										<span th:if="${book.nbCopiesAvailable == 0}" class="text-danger"> 
+											Il n'y a plus d'exemplaires disponible actuellement.
+										</span>
+										
+										<div th:unless="${book.nbCopiesAvailable == 0}" >
+											<span class="text-success">
+												Nombre d'exemplaires disponibles: [[${book.nbCopiesAvailable}]]
+											</span>
+											<a th:href="@{/book/createLoan(bookId=${book.id})}">
+												<button class="btn btn-success btn-sm ml-3">Emprunter</button>
+											</a>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				
 			</th:block>
 			</div>
 		</div>

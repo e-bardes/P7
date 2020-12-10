@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openclassroom.business.BookV2AdditionService;
-import com.openclassroom.dao.entity.BookEntity;
 
 @RestController
 @RequestMapping("/api/v2/books")
@@ -20,17 +19,18 @@ public class BookV2AdditionRestController {
 		this.bookV2AdditionService = bookV2AdditionService;
 	}
 	
+	// créer un emprunt
 	@PutMapping("/loans2")
-	public BookEntity createBookLoan(@RequestParam("bookId") int bookId, 
+	public void createBookLoan(@RequestParam("bookId") int bookId, 
 									 @RequestParam("username") String username) {
 		
-		return bookV2AdditionService.createBookLoan(bookId, username);
+		bookV2AdditionService.createBookLoan(bookId, username);
 	}
 	
+	// supprimer un emprunt
 	@PutMapping("/loans1")
-	public BookEntity deleteBookLoan(@RequestParam("bookId") int bookId, 
-			 						 @RequestParam("username") String username) {
+	public void deleteBookLoan(@RequestParam("bookId") int loanId) {
 		
-		return bookV2AdditionService.deleteBookLoan(bookId, username);
+		bookV2AdditionService.deleteBookLoan(loanId);
 	}
 }

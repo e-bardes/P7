@@ -24,11 +24,11 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
-	// on passe en paramètre la la date et l'heure actuelle car on a besoin de la comparer avec celles
-	// dédiées aux livres empruntés
+	// on passe en paramètre la date et l'heure actuelle car on a besoin de la comparer avec celles
+	// liées aux emprunts
 	@Override
 	public List<UserEntity> getUsers() {
-		return userRepository.findUsersByOverdueBooks(LocalDateTime.now());
+		return userRepository.findUsersByOverdueLoans(LocalDateTime.now());
 	}
 
 	@Override

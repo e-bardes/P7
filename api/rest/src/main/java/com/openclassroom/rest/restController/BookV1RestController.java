@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openclassroom.business.BookV1Service;
-import com.openclassroom.business.UserService;
 import com.openclassroom.dao.entity.BookEntity;
+import com.openclassroom.dao.entity.LoanEntity;
 
 
 @RestController
@@ -25,13 +25,6 @@ public class BookV1RestController {
 		this.bookService = bookService;
 	}
 	
-	private UserService userService;
-	
-	@Autowired
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-	
 	public BookV1RestController() {
 		
 	}
@@ -42,30 +35,29 @@ public class BookV1RestController {
 		return bookService.getBooks();
 	}
 	
-	@GetMapping("/count")
-	public Long countBooks() {
-		
-		return bookService.countBooks();
-	}
-	
+	// récupérer tous les emprunts de l'utilisateur courant en fonction de son nom d'utilisateur
 	@GetMapping("/loans")
-	public List<BookEntity> getUserLoans(@RequestParam("username") String username) {
+	public List<LoanEntity> getUserLoans(@RequestParam("username") String username) {
 		
-		return userService.getUser(username).getBookList();
+		return bookService.getUserLoans(username);
 		
 	}
 	
+	// prolonger un emprunt de 4 semaines
 	@PutMapping("/loans")
-	public BookEntity extendLoan(@RequestParam("loanId") int loanId) {
+	public void extendLoan(@RequestParam("loanId") int loanId) {
 		
-		BookEntity book = bookService.getBook(loanId);
-
-		book.setEndOfLoaningDate(book.getEndOfLoaningDate().plusWeeks(4));
+		LoanEntity loan = bookService.getLoan(loanId);
+		loan.setEndOfLoaningDate(loan.getEndOfLoaningDate().plusWeeks(4));
+		loan.setLoanExtended(true);
+		bookService.addOrEditLoan(loan);
+	}
+	
+	// chercher des livres à partir de la string saisie dans la barre de recherche
+	@GetMapping("/books")
+	public List<BookEntity> searchBooks(@RequestParam("result") String result) {
+		return bookService.searchBooks(result);
 		
-		book.setLoanExtended(true);
-			
-		bookService.addOrEditBook(book);
-		return book;
 	}
 	
 }

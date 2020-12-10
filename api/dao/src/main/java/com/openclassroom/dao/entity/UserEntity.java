@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table
 public class UserEntity {
@@ -22,8 +24,9 @@ public class UserEntity {
     private String password;
     private String email;
     
-    @OneToMany
-	public List<BookEntity> bookList = new ArrayList<BookEntity>();   
+    @OneToMany( targetEntity=LoanEntity.class, mappedBy="user")
+    @JsonManagedReference
+	private List<LoanEntity> loanList = new ArrayList<LoanEntity>();   
 
 	public UserEntity() {
     	
@@ -34,7 +37,6 @@ public class UserEntity {
 		this.password = password;
 		this.email = email;
 	}
-	
 	
 	public int getId() {
 		return id;
@@ -68,12 +70,12 @@ public class UserEntity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public List<BookEntity> getBookList() {
-		return bookList;
+
+	public List<LoanEntity> getLoanList() {
+		return loanList;
 	}
 
-	public void setBookList(List<BookEntity> bookList) {
-		this.bookList = bookList;
+	public void setLoanList(List<LoanEntity> loanList) {
+		this.loanList = loanList;
 	}
 }

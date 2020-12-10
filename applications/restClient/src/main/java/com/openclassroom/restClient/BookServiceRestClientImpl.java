@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.openclassroom.model.Book;
+import com.openclassroom.model.Loan;
 
 
 @Service
@@ -51,25 +52,17 @@ public class BookServiceRestClientImpl implements BookServiceRestClient {
 		
 	}
 	
-	// compter le nombre de livres répertoriés
-	@Override
-	public Long countBooks() {
-		Long nbBooks = restTemplate.getForObject(restUrl + "/count" , Long.class);
-		
-		return nbBooks;
-	}
-	
 	// obtenir tous les emprunts d'un utilisateur
 	@Override
-	public List<Book> getUserLoans(String username) {
+	public List<Loan> getUserLoans(String username) {
 		
 		
-		ResponseEntity<List<Book>> responseEntity = restTemplate.exchange(restUrl + "/loans?username=" + username, 
-				HttpMethod.GET, null, new ParameterizedTypeReference<List<Book>>() {});
+		ResponseEntity<List<Loan>> responseEntity = restTemplate.exchange(restUrl + "/loans?username=" + username, 
+				HttpMethod.GET, null, new ParameterizedTypeReference<List<Loan>>() {});
 		
-		List<Book> bookList = responseEntity.getBody();
+		List<Loan> loanList = responseEntity.getBody();
 		
-		return bookList;
+		return loanList;
 		
 	}
 	
@@ -78,6 +71,17 @@ public class BookServiceRestClientImpl implements BookServiceRestClient {
 	public void extendLoan(int loanId) {
 		
 		restTemplate.put(restUrl + "/loans?loanId=" + loanId, null);
+	}
+	
+	// chercher des livres en fonction de ce qui a été saisie dans la barre de recherche
+	@Override
+	public List<Book> searchBooks(String result) {
+		ResponseEntity<List<Book>> responseEntity = restTemplate.exchange(restUrl + "/books?result=" + result, 
+				HttpMethod.GET, null, new ParameterizedTypeReference<List<Book>>() {});
+		
+		List<Book> books = responseEntity.getBody();
+		
+		return books;
 	}
 
 }

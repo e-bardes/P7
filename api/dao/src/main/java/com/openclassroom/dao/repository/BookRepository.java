@@ -9,7 +9,7 @@ import com.openclassroom.dao.entity.BookEntity;
 
 @Repository
 public interface BookRepository extends JpaRepository<BookEntity, Integer> {
-	
+
 	List<BookEntity> findByOrderByIdAsc();
 
 }

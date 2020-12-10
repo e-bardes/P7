@@ -80,9 +80,9 @@
       </tr>
     </thead>
     <tbody>
-    <#list bookList as item>
+    <#list loanList as item>
       <tr>
-        <td style="width: 208.85px;">${item.name}</td>
+        <td style="width: 208.85px;">${item.book.name}</td>
         <td>${(item.endOfLoaningDate).format('yyyy-MM-dd HH:mm:ss')}</td>
       </tr>
       </#list>

@@ -1,4 +1,4 @@
-package com.openclassroom.batch.service;
+	package com.openclassroom.batch.service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;

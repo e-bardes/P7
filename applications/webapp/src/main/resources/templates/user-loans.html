@@ -24,16 +24,16 @@
 		<div class="jumbotron bg-white mt-5 border h-auto min-vh-100">
 		
 			<div class="card-deck">
-				<th:block th:each="book : ${books}">
+				<th:block th:each="loan : ${loans}">
 					<div class="col-12 mb-5">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">[[${book.id}]]</h4>
+								<h4 class="card-title">[[${loan.book.name}]]</h4>
 							</div>
 							<div class="card-body">
-								<p class="card-text">Date de disponibilité: [[${#temporals.format(book.endOfLoaningDate, 'dd-MM-yyyy HH:mm')}]]</p>
+								<p class="card-text">Date de disponibilité: [[${#temporals.format(loan.endOfLoaningDate, 'dd-MM-yyyy HH:mm')}]]</p>
 								<div class="card-text">
-									<a th:if="${book.loanExtended == false}" th:href="@{/loan/extend(bookId=${book.id})}">
+									<a th:if="${loan.loanExtended == false}" th:href="@{/loan/extend(loanId=${loan.id})}">
 										<button class="btn btn-success btn-sm ml-3">Prolonger l'emprunt</button>
 									</a>
 								</div>
