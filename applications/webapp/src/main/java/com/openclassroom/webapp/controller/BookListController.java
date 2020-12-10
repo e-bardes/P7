@@ -29,9 +29,9 @@ public class BookListController {
 	}
 	
 	// afficher la liste de tous les livres
+	@SuppressWarnings("unchecked")
 	@GetMapping("/list")
 	public String listBooks(Model model) {
-		
 		
 		List<Book> books = new ArrayList<>();
 		

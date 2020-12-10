@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openclassroom.business.UserService;
-import com.openclassroom.dao.entity.LoanEntity;
 import com.openclassroom.dao.entity.UserEntity;
 
 @RestController
