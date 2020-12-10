@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openclassroom.business.BookV1Service;
-import com.openclassroom.dao.entity.BookEntity;
 import com.openclassroom.dao.entity.LoanEntity;
+import com.openclassroom.dao.entity.BookEntity;
+
 
 
 @RestController

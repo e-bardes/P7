@@ -27,7 +27,7 @@
 5. Fixer les variables d'environnements:
   * CATALINA_HOME (qui a pour valeur le répertoire du serveur)
   * JAVA_HOME (qui a pour valeur le chemin du jdk. Installer également le jdk 11 pour que les programmes s'éxécutent avec celui-ci)
-6. Au niveau des modules "rest", "webapp", lancer la commande "mvn clean package"
+6. Au niveau des modules "rest", "webapp", lancer la commande "mvn clean package". Si le build échoue, lancer la commande à la racine des projets "api" et "applications".
 7. "rest" et "webapp" contiennent un fichier War (dans le dossier "target") à placer dans le dossier "webapps" du serveur tomcat. Par défaut les deux applications utilisent le même port.
 8. Renommer ces deux fichiers en enlevant le numéro de version: "-1.0"
 9. Lancer le serveur tomcat en éxécutant le fichier "startup.bat" ou "startup.sh" (en fonction du système d'exploitation).
